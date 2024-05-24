@@ -1,0 +1,464 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.conteudo {
+    position: fixed;
+    width: 80%;
+    background: #ffffff;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.calendario {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.calendario table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.calendario th,
+.calendario td {
+    width: calc(100% / 7);
+    padding: 10px;
+    text-align: center;
+}
+
+.conteudo .calendario header {
+    position: relative;
+}
+
+.img-agd {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+.titulo-agenda {
+    position: absolute;
+    top: 18px;
+    left: 60px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+h2 {
+    margin-top: 20px;
+    font-size: 28px;
+    text-transform: uppercase;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    width: 14.28%;
+    border: 1px solid #ddd;
+    padding: 10px;
+    vertical-align: top;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+td:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+/* Estilo dos modais */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilo do modal de eventos */
+#eventModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#eventModal .modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#eventModal .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#eventModal .close:hover,
+#eventModal .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilo dos botões de cor */
+.color-options {
+    text-align: center;
+}
+
+.color-option {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.color-checkmark {
+    visibility: hidden;
+}
+
+/* Estilos específicos do calendário */
+.calendario .mes-anterior,
+.calendario .proximo-mes {
+    color: #bbb9b9;
+}
+
+.calendario table .dia-atual {
+    background: rgb(214, 213, 213);
+    color: rgb(17, 17, 17);
+    font-weight: bold;
+}
+
+.calendario tbody td {
+    width: 100px;
+    max-width: 50px;
+    height: 80px;
+    font-size: 11px;
+    cursor: pointer;
+    text-align: right;
+    padding: 10px;
+    vertical-align: top;
+    margin-left: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.calendario thead {
+    background: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.calendario thead td {
+    padding: 5px;
+    height: 15px;
+    font-size: 12px;
+}
+
+/* Estilo dos dias de feriado */
+.holiday {
+    background-color: #ffdfcc;
+    color: #fa5d02;
+    font-weight: bold;
+}
+
+
+
+/* Estilos específicos das tarefas */
+.task {
+    background-color: #ffc;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 4px;
+    width: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.description-textarea {
+    max-height: 100px;
+    overflow-y: auto;
+    resize: vertical;
+}
+
+/* Estilos para o formulário de adicionar evento */
+#addEventForm {
+    margin-top: 20px;
+}
+
+/* Estilos para as etiquetas */
+#addEventForm label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Estilos para os campos de entrada de texto */
+#addEventForm input[type="text"],
+#addEventForm input[type="date"],
+#addEventForm textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Garante que o padding e a borda não aumentem a largura */
+}
+
+/* Estilos para a caixa de seleção de cores */
+.color-options {
+    margin-top: 10px;
+}
+
+.color-option {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    cursor: pointer;
+    border: 2px solid transparent; /* Adiciona uma borda ao redor das opções de cores */
+    border-radius: 4px;
+}
+
+/* Estilo para a opção de cor selecionada */
+.color-option.selected {
+    border-color: #333; /* Cor da borda quando a opção está selecionada */
+}
+
+/* Estilo para o marcador de seleção de cor */
+.color-checkmark {
+    visibility: hidden; /* Oculta o marcador por padrão */
+    color: #fff; /* Cor do marcador */
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Estilo para o marcador de seleção de cor quando selecionado */
+.color-option.selected .color-checkmark {
+    visibility: visible; /* Torna o marcador visível quando a opção está selecionada */
+}
+
+/* Estilização básica do modal */
+#tasksModal {
+    display: none; /* Oculta o modal por padrão */
+    position: fixed; /* Fixa o modal na tela */
+    z-index: 1000; /* Garante que o modal esteja acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ocupa toda a largura da tela */
+    height: 100%; /* Ocupa toda a altura da tela */
+    overflow: auto; /* Habilita rolagem se necessário */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* Centraliza o modal verticalmente */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Largura do modal */
+    max-width: 600px; /* Largura máxima do modal */
+    border-radius: 8px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.agenda-task {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.btn_del {
+    font-size: 12px;
+    background-color: #d62d2d; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    padding: 5px 5px; /* Preenchimento interno do botão */
+    border: none; /* Remove a borda do botão */
+    border-radius: 3px; /* Cantos arredondados */
+    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+}
+
+/* Modal Todas as tarefas */
+
+#tasksModal h2 {
+    font-size: 18px;
+
+}
+
+.agenda-tasks {
+    list-style-type: none; /* Remove os marcadores de lista */
+    padding: 0; /* Remove o preenchimento padrão */
+}
+
+.agenda-task {
+    margin-bottom: 20px; /* Espaçamento entre as tarefas */
+    border: 1px solid #ccc; /* Borda ao redor de cada tarefa */
+    padding: 10px; /* Preenchimento interno das tarefas */
+    border-radius: 5px; /* Cantos arredondados */
+}
+
+.agenda-task h3 {
+    font-size: 16px;
+}
+
+.agenda-task p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.agenda-task strong {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Estilo para Modal editar tarefa */
+
+#editModal h2 {
+    font-size: 18px;
+}
+
+/* Estilos para o formulário de edição de eventos */
+#editEventForm {
+    max-width: 500px;
+    margin: 0 auto; 
+    padding: 20px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+}
+
+/* Estilos para os rótulos do formulário */
+#editEventForm label {
+    display: block; 
+    margin-bottom: 5px;
+    font-weight: bold; 
+}
+
+/* Estilos para os campos de entrada de texto */
+#editEventForm input[type="text"],
+#editEventForm input[type="date"],
+#editEventForm textarea {
+    max-width: 95%;
+    width: 100%; 
+    padding: 8px; 
+    margin-bottom: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 3px; 
+}
+
+/* Estilos para o botão de envio */
+#editEventForm button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 10px; 
+    border: none; 
+    border-radius: 3px; 
+    cursor: pointer; 
+    font-size: 13px;
+}
+
+/* Estilos para o botão de envio quando hover */
+#editEventForm button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+#btn_close {
+    background-color: #c9c8c8;
+    color: #000;
+    padding: 10px 10px; 
+    border: none; 
+    border-radius: 3px; 
+    cursor: pointer; 
+    font-size: 13px;
+}
+
+#btn_close:hover {
+    background-color: #929292;
+}
+
+
+
+
