@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"> <!-- Adicionado parâmetro de versão -->
+    <link rel="stylesheet" href="style.css">
     <title>Calendário</title>
 </head>
 
@@ -53,24 +53,23 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal para adicionar evento -->
     <div id="eventModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Adicionar Evento</h2>
             <form id="addEventForm">
                 <input type="hidden" id="taskDay" name="taskDay">
-                <label for="eventTitleEdit">Título:</label>
-                <input type="text" id="eventTitleEdit" name="eventTitleEdit" required><br>
-                <label for="eventDateEdit">Data de Início:</label>
-                <input type="date" id="eventDateEdit" name="eventDateEdit" required><br>
-                <label for="eventEndDateEdit">Data de Fim:</label>
-                <input type="date" id="eventEndDateEdit" name="eventEndDateEdit" required><br>
-                <label for="eventDescriptionEdit">Descrição:</label><br>
-                <textarea id="eventDescriptionEdit" name="eventDescriptionEdit"></textarea><br>
-                <input type="hidden" id="selectedColorEdit" name="selectedColorEdit">
+                <label for="eventTitle">Título:</label>
+                <input type="text" id="eventTitle" name="eventTitle" required><br>
+                <label for="eventDate">Data de Início:</label>
+                <input type="date" id="eventDate" name="eventDate" required><br>
+                <label for="eventEndDate">Data de Fim:</label>
+                <input type="date" id="eventEndDate" name="eventEndDate"><br>
+                <label for="eventDescription">Descrição:</label><br>
+                <textarea id="eventDescription" name="eventDescription"></textarea><br>
+                <input type="hidden" id="selectedColor" name="selectedColor">
                 <div class="color-options">
-
                     <div class="color-option color-red" style="background-color: #d4d24a;">
                         <div class="color-checkmark">&#10003;</div>
                     </div>
@@ -80,22 +79,22 @@
                     <div class="color-option color-green" style="background-color: #f903a5;">
                         <div class="color-checkmark">&#10003;</div>
                     </div>
-                    <div class="color-option color-blue" style="background-color: #1a9b05;">
+                    <div class="color-option color-green" style="background-color: #1a9b05;">
                         <div class="color-checkmark">&#10003;</div>
                     </div>
-                    <div class="color-option color-blue" style="background-color: #0c2ddd;">
+                    <div class="color-option color-green" style="background-color: #0c2ddd;">
                         <div class="color-checkmark">&#10003;</div>
                     </div>
-                    <div class="color-option color-blue" style="background-color: #ff4206;">
+                    <div class="color-option color-green" style="background-color: #ff4206;">
                         <div class="color-checkmark">&#10003;</div>
                     </div>
-                    <div class="color-option color-blue" style="background-color: #17cccc;">
+                    <div class="color-option color-green" style="background-color: #17cccc;">
                         <div class="color-checkmark">&#10003;</div>
                     </div>
-                    <div class="color-option color-blue" style="background-color: #0a0003;">
+                    <div class="color-option color-green" style="background-color: #0a0003;">
                         <div class="color-checkmark">&#10003;</div>
                     </div>
-                    <div class="color-option color-blue" style="background-color: #a8a8a8;">
+                    <div class="color-option color-green" style="background-color: #a8a8a8;">
                         <div class="color-checkmark">&#10003;</div>
                     </div>
                 </div>
@@ -104,7 +103,7 @@
         </div>
     </div>
 
-    <!-- Modal para editar a tarefa criada-->
+    <!-- Modal para editar a tarefa criada -->
     <div id="editModal" class="modal">
         <div class="modal-content">
             <button id="btn_del" class="btn_del">Apagar Tarefa</button>
@@ -128,7 +127,7 @@
     </div>
 
 
-    <!-- Modal para Exibir Todos os Eventos -->
+    <!-- Modal para exibir todas as tarefas -->
     <div id="tasksModal" class="modal">
         <div class="modal-content">
             <span id="closeTasksModalButton" class="close">&times;</span>

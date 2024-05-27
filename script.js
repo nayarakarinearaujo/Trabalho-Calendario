@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const tableDays = document.getElementById('dias');
     let mes;
     let ano;
-
     const feriadosNacionais = {
         '1-1': 'Confraternização Universal',
         '4-21': 'Tiradentes',
@@ -14,28 +13,27 @@ document.addEventListener('DOMContentLoaded', function () {
         '11-15': 'Proclamação da República',
         '12-25': 'Natal'
     };
-
     let tasks = [];
 
-    function GetDaysCalendar(mes, ano) {
+    function getDaysCalendar(mes, ano) {
         document.getElementById('mes').textContent = monthsBr[mes];
         document.getElementById('ano').textContent = ano;
 
         tableDays.innerHTML = '';
 
-        let firstDayOfWeek = new Date(ano, mes, 1).getDay();
-        let getLastDayThisMonth = new Date(ano, mes + 1, 0).getDate();
-        let getLastDayPrevMonth = new Date(ano, mes, 0).getDate();
+        const firstDayOfWeek = new Date(ano, mes, 1).getDay();
+        const getLastDayThisMonth = new Date(ano, mes + 1, 0).getDate();
+        const getLastDayPrevMonth = new Date(ano, mes, 0).getDate();
 
-        let now = new Date();
-        let diaAtual = now.getDate();
+        const now = new Date();
+        const diaAtual = now.getDate();
 
         let day = 1;
         let prevMonthDay = getLastDayPrevMonth - firstDayOfWeek + 1;
         for (let i = 0; i < 6; i++) {
-            let row = tableDays.insertRow();
+            const row = tableDays.insertRow();
             for (let j = 0; j < 7; j++) {
-                let cell = row.insertCell();
+                const cell = row.insertCell();
                 if (i === 0 && j < firstDayOfWeek) {
                     cell.textContent = prevMonthDay++;
                     cell.classList.add('mes-anterior');
@@ -55,41 +53,54 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     const feriado = feriadosNacionais[`${mes + 1}-${day}`];
                     if (feriado) {
-                        cell.innerHTML += `<br><span class="feriado">${feriado}</span>`;
-                        cell.classList.add('holiday'); // Adicione a classe de estilo aos dias de feriado
+                        const span = document.createElement('span');
+                        span.classList.add('feriado');
+                        span.textContent = feriado;
+                        cell.appendChild(span);
+                        cell.classList.add('holiday');
                     }
 
-                    const taskList = tasks.filter(task =>
-                        task.eventDate === `${ano}-${String(mes + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`
-                    );
-
-                    // Dentro da função GetDaysCalendar
-                    taskList.forEach(task => {
+                    const taskList = tasks.filter(task => task.eventDate === `${ano}-${String(mes + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`);
+                    taskList.forEach((task, index) => {
                         const taskElement = document.createElement('div');
-                        taskElement.className = 'task';
+                        taskElement.classList.add('task');
                         taskElement.textContent = task.eventTitle;
                         taskElement.style.backgroundColor = task.eventColor;
-                        taskElement.addEventListener('click', () => {
-                            // Preencher os campos do editModal com os detalhes da tarefa selecionada
-                            document.getElementById('eventTitleEdit').value = task.eventTitle;
-                            document.getElementById('eventDateEdit').value = task.eventDate;
-                            document.getElementById('eventDescriptionEdit').value = task.eventDescription;
-                            document.getElementById('selectedColorEdit').value = task.eventColor;
-
-                            // Abrir o editModal
-                            document.getElementById('editModal').style.display = 'block';
+                    
+                        taskElement.addEventListener('click', function (event) {
+                            if (event.target.classList.contains('task')) {
+                                const taskIndex = Array.from(this.parentNode.children).indexOf(this);
+                                const clickedTask = taskList[taskIndex];
+                                openEditModal(clickedTask);
+                            }
                         });
+                    
                         cell.appendChild(taskElement);
                     });
-
+                    
 
                     cell.addEventListener('dblclick', function () {
-                        openModal(day, mes + 1, ano, day, mes + 1, ano);
+                        const taskList = tasks.filter(task => task.eventDate === `${ano}-${String(mes + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`);
+                        if (taskList.length > 0) {
+                            openModal(day, mes + 1, ano, taskList[0]); // Abre o modal com a primeira tarefa encontrada
+                        } else {
+                            openModal(day, mes + 1, ano); // Se não houver tarefa, abre o modal para adicionar uma nova
+                        }
                     });
+                    
                     day++;
                 }
             }
         }
+    }
+
+    function openEditModal(task) {
+        document.getElementById('eventTitleEdit').value = task.eventTitle;
+        document.getElementById('eventDateEdit').value = task.eventDate;
+        document.getElementById('eventEndDateEdit').value = task.eventDateFim;
+        document.getElementById('eventDescriptionEdit').value = task.eventDescription;
+        document.getElementById('selectedColorEdit').value = task.eventColor;
+        document.getElementById('editModal').style.display = 'block';
     }
 
     function updateCalendar() {
@@ -100,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
             mes = 0;
             ano++;
         }
-        GetDaysCalendar(mes, ano);
+        getDaysCalendar(mes, ano);
     }
 
     let now = new Date();
@@ -119,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('btn_hoje').addEventListener('click', function () {
-        let now = new Date();
+        const now = new Date();
         mes = now.getMonth();
         ano = now.getFullYear();
         updateCalendar();
@@ -128,15 +139,13 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('btn_agd').addEventListener('click', function () {
         const tasksModal = document.getElementById('tasksModal');
         const tasksList = document.getElementById('tasksList');
-        tasksList.innerHTML = ''; // Limpa o conteúdo da lista de tarefas antes de adicionar as novas tarefas
+        tasksList.innerHTML = '';
 
-
-        //Model com todas as tarefas criadas
         tasks.forEach(task => {
             const taskElement = document.createElement('div');
-            taskElement.className = 'agenda-task';
+            taskElement.classList.add('agenda-task');
             taskElement.innerHTML = `
-                <h3><strong>Título:</strong>${task.eventTitle}</h3>
+                <h3><strong>Título:</strong> ${task.eventTitle}</h3>
                 <p><strong>Data Início:</strong> ${task.eventDate}</p>
                 <p><strong>Data Fim:</strong> ${task.eventDateFim}</p>
                 <p><strong>Cor:</strong> ${task.eventColor}</p>
@@ -144,17 +153,11 @@ document.addEventListener('DOMContentLoaded', function () {
             tasksList.appendChild(taskElement);
         });
 
-
-        // Exibe o modal com todas as tarefas
         tasksModal.style.display = 'block';
 
-        const closeTasksModalButton = document.getElementById('closeTasksModalButton');
-        closeTasksModalButton.addEventListener('click', function () {
-            const tasksModal = document.getElementById('tasksModal');
+        document.getElementById('closeTasksModalButton').addEventListener('click', function () {
             tasksModal.style.display = 'none';
         });
-
-
     });
 
     const modal = document.getElementById('eventModal');
@@ -162,13 +165,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     span.onclick = function () {
         modal.style.display = 'none';
-    }
+    };
 
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = 'none';
         }
-    }
+    };
 
     const colorOptions = document.querySelectorAll('.color-option');
     colorOptions.forEach(option => {
@@ -176,61 +179,58 @@ document.addEventListener('DOMContentLoaded', function () {
             const selectedColor = option.style.backgroundColor;
             document.getElementById('selectedColor').value = selectedColor;
 
-            // Remova a classe 'selected' de todos os quadrados de cor
             colorOptions.forEach(opt => {
                 opt.classList.remove('selected');
                 opt.querySelector('.color-checkmark').style.visibility = 'hidden';
             });
 
-            // Adicione a classe 'selected' apenas ao quadrado de cor clicado
             option.classList.add('selected');
             option.querySelector('.color-checkmark').style.visibility = 'visible';
         });
+
     });
 
 
-    function openModal(day, month, year) {
-        modal.style.display = 'block';
-        const now = new Date();
-        document.getElementById('taskDay').value = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-        document.getElementById('eventDate').value = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    function openModal(day, month, year, task = null) {
+        if (task) {
+            openEditModal(task);
+        } else {
+            modal.style.display = 'block';
+            document.getElementById('taskDay').value = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            document.getElementById('eventDate').value = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        }
     }
-
-
-    document.addEventListener('DOMContentLoaded', function () {
-        openModal(now.getDate(), now.getMonth() + 1, now.getFullYear());
-
-    });
-
-
 
     document.getElementById('addEventForm').addEventListener('submit', function (event) {
         event.preventDefault();
         const taskDay = document.getElementById('taskDay').value;
+
         const eventTitle = document.getElementById('eventTitle').value;
         const eventDate = document.getElementById('eventDate').value;
+        const eventEndDate = document.getElementById('eventEndDate').value;
         const eventDescription = document.getElementById('eventDescription').value;
-        const eventColor = document.getElementById('selectedColor').value; // Use a cor selecionada
-        tasks.push({ taskDay, eventTitle, eventDate, eventDescription, eventColor });
+        const eventColor = document.getElementById('selectedColor').value;
 
-        // Fechar o modal
+        tasks.push({ eventDate, eventTitle, eventDateFim: eventEndDate, eventDescription, eventColor });
+        console.log('Tasks:', tasks); // Adicionado para verificar se a tarefa foi salva corretamente
+
         modal.style.display = 'none';
+        getDaysCalendar(mes, ano); // Chamando a função para atualizar o calendário com as novas tarefas
 
-        // Atualizar o calendário
-        updateCalendar();
-
-        // Limpar os campos do formulário
         document.getElementById('taskDay').value = '';
         document.getElementById('eventTitle').value = '';
         document.getElementById('eventDate').value = '';
+        document.getElementById('eventEndDate').value = '';
         document.getElementById('eventDescription').value = '';
         document.getElementById('selectedColor').value = '';
 
-        // Remover a seleção de cor
+        // taskElement.addEventListener('dblclick', () => {
+        //     openEditModal(task);
+        // });
+
         colorOptions.forEach(opt => {
             opt.classList.remove('selected');
             opt.querySelector('.color-checkmark').style.visibility = 'hidden';
         });
     });
-
 });
