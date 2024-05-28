@@ -22,6 +22,8 @@
                     <button class="btn_hoje" id="btn_hoje">Hoje</button>
                     <button class="btn_mes" id="btn_mes">Mês</button>
                     <button class="btn_agd" id="btn_agd">Agenda</button>
+                    <!-- <button class="btn_agd" id="btn_tarefa">Tarefa</button> teste editModal-->
+
                 </header>
                 <table>
                     <thead>
@@ -59,16 +61,29 @@
             <span class="close">&times;</span>
             <h2>Adicionar Evento</h2>
             <form id="addEventForm">
-                <input type="hidden" id="taskDay" name="taskDay">
-                <label for="eventTitle">Título:</label>
-                <input type="text" id="eventTitle" name="eventTitle" required><br>
-                <label for="eventDate">Data de Início:</label>
-                <input type="date" id="eventDate" name="eventDate" required><br>
-                <label for="eventEndDate">Data de Fim:</label>
-                <input type="date" id="eventEndDate" name="eventEndDate"><br>
-                <label for="eventDescription">Descrição:</label><br>
-                <textarea id="eventDescription" name="eventDescription"></textarea><br>
-                <input type="hidden" id="selectedColor" name="selectedColor">
+
+                <div class="form-group">
+                    <input type="hidden" id="taskDay" name="taskDay">
+                    <label for="eventTitle">Título:</label>
+                    <input type="text" id="eventTitle" name="eventTitle" required><br>
+                    <div class="date-time-group">
+                        <label for="eventDate">Data de Início:</label>
+                        <input class="dt_ini" type="date" id="eventDate" name="eventDate" required><br>
+                        <label for="startTime">Hora de Início:</label>
+                        <input type="time" id="startTime" name="startTime" required>
+                    </div>
+                    <div class="date-time-group">
+                        <label for="eventEndDate">Data de Fim:</label>
+                        <input class="dt_fim" type="date" id="eventEndDate" name="eventEndDate"><br>
+                        <label for="endTime">Hora de Fim:</label>
+                        <input type="time" id="endTime" name="endTime">
+                    </div>
+                    <label for="eventDescription">Descrição:</label><br>
+                    <textarea id="eventDescription" name="eventDescription"></textarea><br>
+                    <input type="hidden" id="selectedColor" name="selectedColor">
+                </div>
+                
+            
                 <div class="color-options">
                     <div class="color-option color-red" style="background-color: #d4d24a;">
                         <div class="color-checkmark">&#10003;</div>
@@ -98,10 +113,11 @@
                         <div class="color-checkmark">&#10003;</div>
                     </div>
                 </div>
-                <button type="submit">Adicionar</button>
+                <button class="btn_add" type="submit">Adicionar</button>
             </form>
         </div>
     </div>
+
 
     <!-- Modal para editar a tarefa criada -->
     <div id="editModal" class="modal">
@@ -125,7 +141,6 @@
             </form>
         </div>
     </div>
-
 
     <!-- Modal para exibir todas as tarefas -->
     <div id="tasksModal" class="modal">
