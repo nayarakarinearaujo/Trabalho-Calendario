@@ -9,20 +9,30 @@
 </head>
 
 <body>
+    
     <div class="container">
         <div class="conteudo">
-            <img class="img-agd" src="icons8-calendário-de-folgas-32.png">
-            <h1 class="titulo-agenda">Agenda</h1>
+            <div>
+                <img class="img-agd" src="icon-agenda-25.png">
+                <h1 class="titulo-agenda">Agenda</h1>
+            </div>
             <div class="calendario">
-                <header>
-                    <h2 id="mes">Abril</h2>
-                    <h2 id="ano" class="ano">2024</h2>
-                    <button class="btn-ant" id="btn_ant">Ant</button>
-                    <button class="btn-pro" id="btn_prox">Prox</button>
-                    <button class="btn_hoje" id="btn_hoje">Hoje</button>
-                    <button class="btn_mes" id="btn_mes">Mês</button>
-                    <button class="btn_agd" id="btn_agd">Agenda</button>
-                    <!-- <button class="btn_agd" id="btn_tarefa">Tarefa</button> teste editModal-->
+                
+                    <div class="subtitulo">
+                        <h2 id="mes">Abril</h2>
+                        <h2 id="ano" class="ano">2024</h2>
+                    </div>
+                    <div class="botoes">
+                        <div class="btn-esq">
+                            <button class="btn_hoje" id="btn_hoje">Hoje</button>
+                            <button class="btn-ant" id="btn_ant">Ant</button>
+                            <button class="btn-pro" id="btn_prox">Prox</button>
+                        </div>
+                        <div class="btn-dir">
+                            <button class="btn_mes" id="btn_mes">Mês</button>
+                            <button class="btn_agd" id="btn_agd">Agenda</button>
+                        </div>
+                    </div>
 
                 </header>
                 <table>
@@ -49,10 +59,11 @@
                         </tr>
                     </tbody>
                 </table>
-                <footer>
-                </footer>
             </div>
+            <footer>
+            </footer>
         </div>
+    </div>
     </div>
 
     <!-- Modal para adicionar evento -->
@@ -82,8 +93,8 @@
                     <textarea id="eventDescription" name="eventDescription"></textarea><br>
                     <input type="hidden" id="selectedColor" name="selectedColor">
                 </div>
-                
-            
+
+
                 <div class="color-options">
                     <div class="color-option color-red" style="background-color: #d4d24a;">
                         <div class="color-checkmark">&#10003;</div>
@@ -122,30 +133,73 @@
     <!-- Modal para editar a tarefa criada -->
     <div id="editModal" class="modal">
         <div class="modal-content">
-            <button id="btn_del" class="btn_del">Apagar Tarefa</button>
+            <button class="btn_del">Apagar Tarefa</button>
             <span id="closeEditModalButton" class="close">&times;</span>
             <h2>Editar Tarefa</h2>
             <form id="editEventForm">
+
                 <label for="eventTitleEdit">Título:</label>
-                <input type="text" id="eventTitleEdit" name="eventTitleEdit" required><br>
-                <label for="eventDateEdit">Data:</label>
-                <input type="date" id="eventDateEdit" name="eventDateEdit" required><br>
-                <label for="eventDescriptionEdit">Descrição:</label><br>
-                <textarea id="eventDescriptionEdit" name="eventDescriptionEdit"></textarea><br>
-                <input type="hidden" id="selectedColorEdit" name="selectedColorEdit">
-                <div class="color-options">
-                    <!-- Adicione opções de cores aqui, se necessário -->
+                <input type="text" id="eventTitleEdit" name="eventTitleEdit" required>
+
+                <label for="eventDateEdit">Data de Início:</label>
+                <input type="date" id="eventDateEdit" name="eventDateEdit" required>
+
+                <label for="startTimeEdit">Hora de Início:</label>
+                <input type="time" id="startTimeEdit" name="startTimeEdit" required>
+
+                <label for="eventEndDateEdit">Data de Término:</label>
+                <input type="date" id="eventEndDateEdit" name="eventEndDateEdit" required>
+
+                <label for="endTimeEdit">Hora de Término:</label>
+                <input type="time" id="endTimeEdit" name="endTimeEdit" required>
+
+                <label for="eventDescriptionEdit">Descrição:</label>
+                <textarea id="eventDescriptionEdit" name="eventDescriptionEdit"></textarea>
+
+                <label for="selectedColorEdit">Cor:</label>
+                <div class="color-options-edit">
+                    <div class="color-option color-red" style="background-color: #d4d24a;">
+                        <div class="color-checkmark">&#10003;</div>
+                    </div>
+                    <div class="color-option color-blue" style="background-color: #3a87ad;">
+                        <div class="color-checkmark">&#10003;</div>
+                    </div>
+                    <div class="color-option color-green" style="background-color: #f903a5;">
+                        <div class="color-checkmark">&#10003;</div>
+                    </div>
+                    <div class="color-option color-green" style="background-color: #1a9b05;">
+                        <div class="color-checkmark">&#10003;</div>
+                    </div>
+                    <div class="color-option color-green" style="background-color: #0c2ddd;">
+                        <div class="color-checkmark">&#10003;</div>
+                    </div>
+                    <div class="color-option color-green" style="background-color: #ff4206;">
+                        <div class="color-checkmark">&#10003;</div>
+                    </div>
+                    <div class="color-option color-green" style="background-color: #17cccc;">
+                        <div class="color-checkmark">&#10003;</div>
+                    </div>
+                    <div class="color-option color-green" style="background-color: #0a0003;">
+                        <div class="color-checkmark">&#10003;</div>
+                    </div>
+                    <div class="color-option color-green" style="background-color: #a8a8a8;">
+                        <div class="color-checkmark">&#10003;</div>
+                    </div>
                 </div>
-                <button id="btn_close" class="btn_close">Fechar</button>
+                <input type="color" id="selectedColorEdit" name="selectedColorEdit" style="display: none;">
+                <!-- Campo de entrada de cor oculto -->
+
                 <button type="submit">Salvar</button>
+                <button type="button" id="btn_close">Fechar</button>
             </form>
         </div>
     </div>
 
+
     <!-- Modal para exibir todas as tarefas -->
     <div id="tasksModal" class="modal">
         <div class="modal-content">
-            <span id="closeTasksModalButton" class="close">&times;</span>
+            <span class="close-tasks-modal">&times;</span>
             <h2>Todas as Tarefas</h2>
             <div id="tasksList"></div>
         </div>

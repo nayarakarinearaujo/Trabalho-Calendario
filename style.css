@@ -1,6 +1,7 @@
 /* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
+    
 }
 
 .container {
@@ -10,6 +11,8 @@ body {
 }
 
 .conteudo {
+    display: flex;
+    align-items: center;
     position: fixed;
     width: 80%;
     background: #ffffff;
@@ -19,6 +22,7 @@ body {
     transform: translateX(-50%);
 }
 
+/* Estilos do calendário */
 .calendario {
     text-align: center;
     width: 100%;
@@ -45,6 +49,7 @@ body {
     position: absolute;
     top: 10px;
     left: 20px;
+    margin-right: 10px;
 }
 
 .titulo-agenda {
@@ -53,20 +58,65 @@ body {
     left: 60px;
     font-size: 20px;
     font-weight: bold;
+    color: #929292;
 }
 
-h2 {
+header {
+    padding: 0px;
+}
+
+.subtitulo h2 {
+    margin-right: 10px; 
     margin-top: 20px;
     font-size: 28px;
     text-transform: uppercase;
 }
 
-header {
+.header-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin: 20px 0;
 }
+
+.subtitulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.botoes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn-esq, .btn-dir {
+    display: flex;
+}
+
+.btn-esq button, .btn-dir button {
+    padding: 5px 10px;
+    margin-right: 10px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.btn-esq button:hover, .btn-dir button:hover {
+    background-color: #2980b9;
+}
+
+.btn_hoje, .btn_mes, .btn_agd {
+    background-color: #2ecc71;
+}
+
+.btn_hoje:hover, .btn_mes:hover, .btn_agd:hover {
+    background-color: #27ae60;
+}
+
+
 
 table {
     width: 100%;
@@ -133,11 +183,21 @@ td:hover {
     z-index: 1;
     left: 0;
     top: 0;
-    width: 100%;
+    width: 90%;
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
 }
+#eventModal .titulo {
+    font-size: 1rem;
+}
+
+#eventModal label {
+    font-size: 0.8rem;
+    color: black; 
+    margin-bottom: 5px; 
+}
+
 
 #eventModal .modal-content {
     background-color: #fff;
@@ -161,12 +221,6 @@ td:hover {
     color: black;
     text-decoration: none;
     cursor: pointer;
-}
-
-.dt_ini, 
-.dt_fim {
-    font-size: 12px; /* Tamanho de fonte desejado */
-    
 }
 
 /* Estilo dos botões de cor */
@@ -234,8 +288,6 @@ td:hover {
     font-weight: bold;
 }
 
-
-
 /* Estilos específicos das tarefas */
 .task {
     background-color: #ffc;
@@ -263,8 +315,7 @@ td:hover {
 #addEventForm label {
     display: block;
     margin-bottom: 5px;
-    margin-left: 10px; 
-
+    margin-left: 10px;
 }
 
 /* Estilos para os campos de entrada de texto */
@@ -275,8 +326,8 @@ td:hover {
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* Garante que o padding e a borda não aumentem a largura */
-    margin-left: 10px; 
+    box-sizing: border-box;
+    margin-left: 10px;
 }
 
 .date-time-group {
@@ -286,80 +337,117 @@ td:hover {
 }
 
 .date-time-group label {
-    flex: 1; /* Distribui o espaço igualmente entre as etiquetas */
-    margin-left: 10px; 
+    flex: 1;
+    margin-left: 10px;
 }
 
 .date-time-group input {
-    flex: 1; /* Distribui o espaço igualmente entre os campos de entrada */
+    flex: 1;
 }
 
 .btn_add {
     font-size: 12px;
-    background-color: rgb(61, 132, 192); 
-    color: #fff; /* Cor do texto do botão */
-    padding: 5px 5px; /* Preenchimento interno do botão */
-    border: none; /* Remove a borda do botão */
-    border-radius: 3px; /* Cantos arredondados */
-    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+    background-color: rgb(61, 132, 192);
+    color: #fff;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
-/* Estilos para a caixa de seleção de cores */
+/* Estilo para o seletor de cores */
+.color-options-edit {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
 .color-options {
     margin-top: 10px;
 }
 
+/* Estilo base para as opções de cor */
 .color-option {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid transparent;
     display: inline-block;
-    width: 30px;
-    height: 30px;
-    margin-right: 5px;
     cursor: pointer;
-    border: 2px solid transparent; /* Adiciona uma borda ao redor das opções de cores */
-    border-radius: 4px;
+    margin: 5px;
+    position: relative;
 }
 
 /* Estilo para a opção de cor selecionada */
 .color-option.selected {
-    border-color: #333; /* Cor da borda quando a opção está selecionada */
+    border-color: #333;
 }
 
-/* Estilo para o marcador de seleção de cor */
+/* Estilo para a checkmark dentro da opção de cor */
 .color-checkmark {
-    visibility: hidden; /* Oculta o marcador por padrão */
-    color: #fff; /* Cor do marcador */
-    font-size: 20px;
+    visibility: hidden;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-size: 16px;
+    color: #fff;
 }
 
 /* Estilo para o marcador de seleção de cor quando selecionado */
 .color-option.selected .color-checkmark {
-    visibility: visible; /* Torna o marcador visível quando a opção está selecionada */
+    visibility: visible;
 }
 
 /* Estilização básica do modal */
 #tasksModal {
-    display: none; /* Oculta o modal por padrão */
-    position: fixed; /* Fixa o modal na tela */
-    z-index: 1000; /* Garante que o modal esteja acima de outros elementos */
+    display: none;
+    position: fixed;
+    z-index: 1000;
     left: 0;
     top: 0;
-    width: 100%; /* Ocupa toda a largura da tela */
-    height: 100%; /* Ocupa toda a altura da tela */
-    overflow: auto; /* Habilita rolagem se necessário */
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#tasksModal .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.close-tasks-modal {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-tasks-modal:hover,
+.close-tasks-modal:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 10% auto; /* Centraliza o modal verticalmente */
+    margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Largura do modal */
-    max-width: 600px; /* Largura máxima do modal */
+    width: 80%;
+    max-width: 600px;
     border-radius: 8px;
 }
 
@@ -377,6 +465,7 @@ td:hover {
     cursor: pointer;
 }
 
+/* Estilo das tarefas da agenda */
 .agenda-task {
     padding: 10px;
     margin: 10px 0;
@@ -387,31 +476,33 @@ td:hover {
 
 .btn_del {
     font-size: 12px;
-    background-color: #d62d2d; /* Cor de fundo do botão */
-    color: #fff; /* Cor do texto do botão */
-    padding: 5px 5px; /* Preenchimento interno do botão */
-    border: none; /* Remove a borda do botão */
-    border-radius: 3px; /* Cantos arredondados */
-    cursor: pointer; /* Muda o cursor ao passar sobre o botão */
+    background-color: #d62d2d;
+    color: #fff;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn_del:hover {
+    background-color: #8b1e1e;
 }
 
 /* Modal Todas as tarefas */
-
 #tasksModal h2 {
     font-size: 18px;
-
 }
 
 .agenda-tasks {
-    list-style-type: none; /* Remove os marcadores de lista */
-    padding: 0; /* Remove o preenchimento padrão */
+    list-style-type: none;
+    padding: 0;
 }
 
 .agenda-task {
-    margin-bottom: 20px; /* Espaçamento entre as tarefas */
-    border: 1px solid #ccc; /* Borda ao redor de cada tarefa */
-    padding: 10px; /* Preenchimento interno das tarefas */
-    border-radius: 5px; /* Cantos arredondados */
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .agenda-task h3 {
@@ -429,7 +520,6 @@ td:hover {
 }
 
 /* Estilo para Modal editar tarefa */
-
 #editModal h2 {
     font-size: 18px;
 }
@@ -437,17 +527,17 @@ td:hover {
 /* Estilos para o formulário de edição de eventos */
 #editEventForm {
     max-width: 500px;
-    margin: 0 auto; 
-    padding: 20px; 
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 /* Estilos para os rótulos do formulário */
 #editEventForm label {
-    display: block; 
+    display: block;
     margin-bottom: 5px;
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 /* Estilos para os campos de entrada de texto */
@@ -455,21 +545,21 @@ td:hover {
 #editEventForm input[type="date"],
 #editEventForm textarea {
     max-width: 95%;
-    width: 100%; 
-    padding: 8px; 
-    margin-bottom: 10px; 
-    border: 1px solid #ccc; 
-    border-radius: 3px; 
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
 }
 
 /* Estilos para o botão de envio */
 #editEventForm button[type="submit"] {
     background-color: #007bff;
     color: #fff;
-    padding: 10px 10px; 
-    border: none; 
-    border-radius: 3px; 
-    cursor: pointer; 
+    padding: 10px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
     font-size: 13px;
 }
 
@@ -478,13 +568,17 @@ td:hover {
     background-color: #0056b3;
 }
 
+.btn_add:hover {
+    background-color: #0056b3;
+}
+
 #btn_close {
     background-color: #c9c8c8;
     color: #000;
-    padding: 10px 10px; 
-    border: none; 
-    border-radius: 3px; 
-    cursor: pointer; 
+    padding: 10px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
     font-size: 13px;
 }
 
@@ -492,6 +586,9 @@ td:hover {
     background-color: #929292;
 }
 
-
-
-
+.color-box {
+    width: 20px; /* Ajuste conforme necessário */
+    height: 20px; /* Ajuste conforme necessário */
+    border-radius: 50%; /* Para criar um círculo */
+    margin-left: 10px; /* Ajuste conforme necessário */
+}

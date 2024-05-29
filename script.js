@@ -16,8 +16,13 @@ document.addEventListener('DOMContentLoaded', function () {
     let tasks = [];
 
     function getDaysCalendar(mes, ano) {
-        document.getElementById('mes').textContent = monthsBr[mes];
-        document.getElementById('ano').textContent = ano;
+        const mesElement = document.getElementById('mes');
+        const anoElement = document.getElementById('ano');
+
+        if (mesElement && anoElement) {
+            mesElement.textContent = monthsBr[mes];
+            anoElement.textContent = ano;
+        }
 
         tableDays.innerHTML = '';
 
@@ -62,27 +67,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     const taskList = tasks.filter(task => task.eventDate === `${ano}-${String(mes + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}` ||
                         task.eventDateFim === `${ano}-${String(mes + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`);
-                        taskList.forEach(task => {
-                            const taskElement = document.createElement('div');
-                            taskElement.classList.add('task');
-                            taskElement.textContent = task.eventTitle;
-                            taskElement.style.backgroundColor = task.eventColor;
-                        
-                            cell.appendChild(taskElement);
-                        
-                            // Adicionando evento de clique para abrir o modal de edição da tarefa existente
-                            taskElement.addEventListener('click', function(event) {
-                                event.stopPropagation(); // Impede que o evento de clique seja propagado para o modal de adição
-                                openEditModal(task);
-                            });
-                        
-                            // Adicionando evento de clique duplo para abrir o modal de edição da tarefa existente
-                            taskElement.addEventListener('dblclick', function(event) {
-                                event.stopPropagation(); // Impede que o evento de clique duplo seja propagado para o modal de adição
-                                openEditModal(task);
-                            });
+                    taskList.forEach(task => {
+                        const taskElement = document.createElement('div');
+                        taskElement.classList.add('task');
+                        taskElement.textContent = task.eventTitle;
+                        taskElement.style.backgroundColor = task.eventColor;
+
+                        cell.appendChild(taskElement);
+
+                        // Adicionando evento de clique para abrir o modal de edição da tarefa existente
+                        taskElement.addEventListener('click', function (event) {
+                            event.stopPropagation(); // Impede que o evento de clique seja propagado para o modal de adição
+                            openEditModal(task);
                         });
-                        
+                    });
 
                     cell.addEventListener('dblclick', function () {
                         openModal(day, mes + 1, ano);
@@ -95,21 +93,75 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function openEditModal(task) {
+        const editModal = document.getElementById('editModal');
+        if (!editModal) return;
+
         document.getElementById('eventTitleEdit').value = task.eventTitle;
         document.getElementById('eventDateEdit').value = task.eventDate;
         document.getElementById('startTimeEdit').value = task.startTime;
-        document.getElementById('eventEndDateEdit').value = task.eventEndDate; 
+        document.getElementById('eventEndDateEdit').value = task.eventDateFim;
         document.getElementById('endTimeEdit').value = task.endTime;
         document.getElementById('eventDescriptionEdit').value = task.eventDescription;
         document.getElementById('selectedColorEdit').value = task.eventColor;
-        document.getElementById('editModal').style.display = 'block';
-    
-        // Adicione o evento de clique ao botão de fechamento do modal de edição aqui
-        document.getElementById('closeEditModalButton').addEventListener('click', function () {
-            document.getElementById('editModal').style.display = 'none';
+        editModal.style.display = 'block';
+    }
+
+    const closeEditModalButton = document.getElementById('closeEditModalButton');
+    if (closeEditModalButton) {
+        closeEditModalButton.addEventListener('click', function () {
+            const editModal = document.getElementById('editModal');
+            if (editModal) {
+                editModal.style.display = 'none';
+            }
         });
     }
+
     
+    // Função para apagar uma tarefa
+    function deleteTask() {
+        const index = tasks.findIndex(task => task.eventDate === document.getElementById('eventDateEdit').value);
+        if (index !== -1) {
+            tasks.splice(index, 1);
+            console.log('Tarefa apagada:', tasks);
+            editModal.style.display = 'none';
+            updateCalendar();
+        }
+    }
+
+    const deleteTaskButton = document.querySelector('.btn_del');
+    if (deleteTaskButton) {
+        deleteTaskButton.addEventListener('click', function () {
+            deleteTask();
+        });
+    }
+
+     // Manipuladores de eventos para seleção de cores durante a edição de tarefas
+     const colorOptionsEdit = document.querySelectorAll('.color-option');
+     const selectedColorEdit = document.getElementById('selectedColorEdit');
+ 
+     colorOptionsEdit.forEach(option => {
+         option.addEventListener('click', function () {
+             const selectedColor = option.style.backgroundColor;
+             selectedColorEdit.value = selectedColor;
+ 
+             colorOptionsEdit.forEach(opt => {
+                 opt.classList.remove('selected');
+                 opt.querySelector('.color-checkmark').style.visibility = 'hidden';
+             });
+ 
+             option.classList.add('selected');
+             option.querySelector('.color-checkmark').style.visibility = 'visible';
+         });
+     });
+
+    window.addEventListener('click', function (event) {
+        const editModal = document.getElementById('editModal');
+        if (event.target == editModal) {
+            editModal.style.display = 'none';
+        }
+    });
+
+
     function updateCalendar() {
         if (mes < 0) {
             mes = 11;
@@ -121,57 +173,94 @@ document.addEventListener('DOMContentLoaded', function () {
         getDaysCalendar(mes, ano);
     }
 
-    now = new Date();
+    const now = new Date();
     mes = now.getMonth();
     ano = now.getFullYear();
     updateCalendar();
 
-    document.getElementById('btn_prox').addEventListener('click', function () {
-        mes++;
-        updateCalendar();
-    });
+    const btnProx = document.getElementById('btn_prox');
+    const btnAnt = document.getElementById('btn_ant');
+    const btnHoje = document.getElementById('btn_hoje');
+    const btnAgd = document.getElementById('btn_agd');
 
-    document.getElementById('btn_ant').addEventListener('click', function () {
-        mes--;
-        updateCalendar();
-    });
+    if (btnProx) {
+        btnProx.addEventListener('click', function () {
+            mes++;
+            updateCalendar();
+        });
+    }
 
-    document.getElementById('btn_hoje').addEventListener('click', function () {
-        const now = new Date();
-        mes = now.getMonth();
-        ano = now.getFullYear();
-        updateCalendar();
-    });
+    if (btnAnt) {
+        btnAnt.addEventListener('click', function () {
+            mes--;
+            updateCalendar();
+        });
+    }
 
-    document.getElementById('btn_agd').addEventListener('click', function () {
-        const tasksModal = document.getElementById('tasksModal');
-        const tasksList = document.getElementById('tasksList');
-        tasksList.innerHTML = '';
+    if (btnHoje) {
+        btnHoje.addEventListener('click', function () {
+            const now = new Date();
+            mes = now.getMonth();
+            ano = now.getFullYear();
+            updateCalendar();
+        });
+    }
 
-        tasks.forEach(task => {
-            const taskElement = document.createElement('div');
-            taskElement.classList.add('agenda-task');
-            taskElement.innerHTML = `
-                <h3><strong>Título:</strong> ${task.eventTitle}</h3>
-                <p><strong>Data Início:</strong> ${task.eventDate}</p>
-                <p><strong>Horário Início:</strong> ${task.startTime}</p>
-                <p><strong>Data Fim:</strong> ${task.eventDateFim}</p>
-                <p><strong>Horário Fim:</strong> ${task.endTime}</p>
-                <p><strong>Cor:</strong> ${task.eventColor}</p>
-            `;
-            tasksList.appendChild(taskElement);
+    if (btnAgd) {
+        btnAgd.addEventListener('click', function () {
+            const tasksModal = document.getElementById('tasksModal');
+            const tasksList = document.getElementById('tasksList');
+            if (!tasksModal || !tasksList) return;
+
+            tasksList.innerHTML = '';
+
+            tasks.forEach(task => {
+                const taskElement = document.createElement('div');
+                taskElement.classList.add('agenda-task');
+                taskElement.innerHTML = `
+                    <h3><strong>Título:</strong> ${task.eventTitle}</h3>
+                    <p><strong>Data Início:</strong> ${task.eventDate}</p>
+                    <p><strong>Horário Início:</strong> ${task.startTime}</p>
+                    <p><strong>Data Fim:</strong> ${task.eventDateFim}</p>
+                    <p><strong>Horário Fim:</strong> ${task.endTime}</p>
+                    <div class="color-box" style="background-color: ${task.eventColor};"></div>
+                    `;
+                tasksList.appendChild(taskElement);
+            });
+
+            tasksModal.style.display = 'block';
         });
 
-        tasksModal.style.display = 'block';
 
-    });
+        const tasksModal = document.getElementById('tasksModal');
+        const closeTasksModalButton = document.querySelector('.close-tasks-modal');
+    
+        if (closeTasksModalButton) {
+            closeTasksModalButton.addEventListener('click', function () {
+                if (tasksModal) {
+                    tasksModal.style.display = 'none';
+                }
+            });
+        }
+    
+        window.addEventListener('click', function (event) {
+            if (event.target == tasksModal) {
+                tasksModal.style.display = 'none';
+            }
+        });
+
+    }
 
     const modal = document.getElementById('eventModal');
     const span = document.getElementsByClassName('close')[0];
 
-    span.onclick = function () {
-        modal.style.display = 'none';
-    };
+    if (span) {
+        span.onclick = function () {
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        };
+    }
 
     window.onclick = function (event) {
         if (event.target == modal) {
@@ -196,6 +285,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function openModal(day, month, year) {
+        if (!modal) return;
+
         modal.style.display = 'block';
         const now = new Date();
         const currentDateTime = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
@@ -209,36 +300,41 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('startTime').value = currentTime;
     }
 
-    document.getElementById('addEventForm').addEventListener('submit', function (event) {
-        event.preventDefault();
-        const taskDay = document.getElementById('taskDay').value;
+    const addEventForm = document.getElementById('addEventForm');
+    if (addEventForm) {
+        addEventForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const taskDay = document.getElementById('taskDay').value;
 
-        const eventTitle = document.getElementById('eventTitle').value;
-        const eventDate = document.getElementById('eventDate').value;
-        const startTime = document.getElementById('startTime').value;
-        const eventEndDate = document.getElementById('eventEndDate').value;
-        const endTime = document.getElementById('endTime').value;
-        const eventDescription = document.getElementById('eventDescription').value;
-        const eventColor = document.getElementById('selectedColor').value;
+            const eventTitle = document.getElementById('eventTitle').value;
+            const eventDate = document.getElementById('eventDate').value;
+            const startTime = document.getElementById('startTime').value;
+            const eventEndDate = document.getElementById('eventEndDate').value;
+            const endTime = document.getElementById('endTime').value;
+            const eventDescription = document.getElementById('eventDescription').value;
+            const eventColor = document.getElementById('selectedColor').value;
 
-        tasks.push({ eventDate, eventTitle, startTime, eventDateFim: eventEndDate, endTime, eventDescription, eventColor });
-        console.log('Tasks:', tasks);
+            tasks.push({ eventDate, eventTitle, startTime, eventDateFim: eventEndDate, endTime, eventDescription, eventColor });
+            console.log('Tasks:', tasks);
 
-        modal.style.display = 'none';
-        getDaysCalendar(mes, ano);
+            modal.style.display = 'none';
+            getDaysCalendar(mes, ano);
 
-        document.getElementById('taskDay').value = '';
-        document.getElementById('eventTitle').value = '';
-        document.getElementById('eventDate').value = '';
-        document.getElementById('startTime').value = '';
-        document.getElementById('eventEndDate').value = '';
-        document.getElementById('endTime').value = '';
-        document.getElementById('eventDescription').value = '';
-        document.getElementById('selectedColor').value = '';
+            document.getElementById('taskDay').value = '';
+            document.getElementById('eventTitle').value = '';
+            document.getElementById('eventDate').value = '';
+            document.getElementById('startTime').value = '';
+            document.getElementById('eventEndDate').value = '';
+            document.getElementById('endTime').value = '';
+            document.getElementById('eventDescription').value = '';
+            document.getElementById('selectedColor').value = '';
 
-        colorOptions.forEach(opt => {
-            opt.classList.remove('selected');
-            opt.querySelector('.color-checkmark').style.visibility = 'hidden';
+            colorOptions.forEach(opt => {
+                opt.classList.remove('selected');
+                opt.querySelector('.color-checkmark').style.visibility = 'hidden';
+            });
         });
-    });
+    }
 });
+
+
