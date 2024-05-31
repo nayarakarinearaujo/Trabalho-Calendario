@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         '12-25': 'Natal'
     };
     let tasks = [];
+    let editModal; // Variável global para armazenar o modal de edição
 
     function getDaysCalendar(mes, ano) {
         const mesElement = document.getElementById('mes');
@@ -93,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function openEditModal(task) {
-        const editModal = document.getElementById('editModal');
+        editModal = document.getElementById('editModal');
         if (!editModal) return;
 
         document.getElementById('eventTitleEdit').value = task.eventTitle;
@@ -109,16 +110,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const closeEditModalButton = document.getElementById('closeEditModalButton');
     if (closeEditModalButton) {
         closeEditModalButton.addEventListener('click', function () {
-            const editModal = document.getElementById('editModal');
+            editModal = document.getElementById('editModal');
             if (editModal) {
                 editModal.style.display = 'none';
             }
         });
     }
 
-    
     // Função para apagar uma tarefa
     function deleteTask() {
+        editModal = document.getElementById('editModal');
+        if (!editModal) return;
+
         const index = tasks.findIndex(task => task.eventDate === document.getElementById('eventDateEdit').value);
         if (index !== -1) {
             tasks.splice(index, 1);
@@ -135,32 +138,31 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-     // Manipuladores de eventos para seleção de cores durante a edição de tarefas
-     const colorOptionsEdit = document.querySelectorAll('.color-option');
-     const selectedColorEdit = document.getElementById('selectedColorEdit');
- 
-     colorOptionsEdit.forEach(option => {
-         option.addEventListener('click', function () {
-             const selectedColor = option.style.backgroundColor;
-             selectedColorEdit.value = selectedColor;
- 
-             colorOptionsEdit.forEach(opt => {
-                 opt.classList.remove('selected');
-                 opt.querySelector('.color-checkmark').style.visibility = 'hidden';
-             });
- 
-             option.classList.add('selected');
-             option.querySelector('.color-checkmark').style.visibility = 'visible';
-         });
-     });
+    // Manipuladores de eventos para seleção de cores durante a edição de tarefas
+    const colorOptionsEdit = document.querySelectorAll('.color-option');
+    const selectedColorEdit = document.getElementById('selectedColorEdit');
+
+    colorOptionsEdit.forEach(option => {
+        option.addEventListener('click', function () {
+            const selectedColor = option.style.backgroundColor;
+            selectedColorEdit.value = selectedColor;
+
+            colorOptionsEdit.forEach(opt => {
+                opt.classList.remove('selected');
+                opt.querySelector('.color-checkmark').style.visibility = 'hidden';
+            });
+
+            option.classList.add('selected');
+            option.querySelector('.color-checkmark').style.visibility = 'visible';
+        });
+    });
 
     window.addEventListener('click', function (event) {
-        const editModal = document.getElementById('editModal');
-        if (event.target == editModal) {
+        editModal = document.getElementById('editModal');
+        if (editModal && event.target == editModal) {
             editModal.style.display = 'none';
         }
     });
-
 
     function updateCalendar() {
         if (mes < 0) {
@@ -199,7 +201,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (btnHoje) {
         btnHoje.addEventListener('click', function () {
-            const now = new Date();
             mes = now.getMonth();
             ano = now.getFullYear();
             updateCalendar();
@@ -231,10 +232,9 @@ document.addEventListener('DOMContentLoaded', function () {
             tasksModal.style.display = 'block';
         });
 
-
         const tasksModal = document.getElementById('tasksModal');
         const closeTasksModalButton = document.querySelector('.close-tasks-modal');
-    
+
         if (closeTasksModalButton) {
             closeTasksModalButton.addEventListener('click', function () {
                 if (tasksModal) {
@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         }
-    
+
         window.addEventListener('click', function (event) {
             if (event.target == tasksModal) {
                 tasksModal.style.display = 'none';
@@ -285,6 +285,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function openModal(day, month, year) {
+        const modal = document.getElementById('eventModal');
         if (!modal) return;
 
         modal.style.display = 'block';
@@ -336,5 +337,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
-
-
