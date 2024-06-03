@@ -1,7 +1,6 @@
 /* Estilos gerais */
 body {
-    font-family: Arial, sans-serif;
-    
+    font-family: Arial, sans-serif;    
 }
 
 .container {
@@ -10,6 +9,7 @@ body {
     text-align: center;
 }
 
+/* Estilos do conteúdo */
 .conteudo {
     display: flex;
     align-items: center;
@@ -116,8 +116,7 @@ header {
     background-color: #27ae60;
 }
 
-
-
+/* Estilo das tabelas */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -141,42 +140,7 @@ td:hover {
     cursor: pointer;
 }
 
-/* Estilo dos modais */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Estilo do modal de eventos */
+/* Estilo do modal de adicionar tarefas */
 #eventModal {
     display: none;
     position: fixed;
@@ -188,25 +152,15 @@ td:hover {
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
 }
-#eventModal .titulo {
+
+#eventModal h2 {
     font-size: 1rem;
-}
+} 
 
 #eventModal label {
     font-size: 0.8rem;
     color: black; 
     margin-bottom: 5px; 
-}
-
-
-#eventModal .modal-content {
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 600px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 #eventModal .close {
@@ -223,21 +177,20 @@ td:hover {
     cursor: pointer;
 }
 
-/* Estilo dos botões de cor */
-.color-options {
-    text-align: center;
-}
-
-.color-option {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    margin-right: 5px;
+/* Estilos para o botão de adicionar tarefa */
+#eventModal button[type="submit"] {
+    font-size: 0.8rem;
+    background-color: rgb(61, 132, 192);
+    color: #fff;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 3px;
     cursor: pointer;
 }
 
-.color-checkmark {
-    visibility: hidden;
+/* Estilos para o botão de adicionar tarefa quando hover */
+#eventModal buttonn[type="submit"]:hover {
+    background-color: #0056b3;
 }
 
 /* Estilos específicos do calendário */
@@ -306,30 +259,6 @@ td:hover {
     resize: vertical;
 }
 
-/* Estilos para o formulário de adicionar evento */
-#addEventForm {
-    margin-top: 20px;
-}
-
-/* Estilos para as etiquetas */
-#addEventForm label {
-    display: block;
-    margin-bottom: 5px;
-    margin-left: 10px;
-}
-
-/* Estilos para os campos de entrada de texto */
-#addEventForm input[type="text"],
-#addEventForm textarea {
-    width: 98%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-left: 10px;
-}
-
 .date-time-group {
     display: flex;
     align-items: center;
@@ -343,16 +272,6 @@ td:hover {
 
 .date-time-group input {
     flex: 1;
-}
-
-.btn_add {
-    font-size: 12px;
-    background-color: rgb(61, 132, 192);
-    color: #fff;
-    padding: 5px 5px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
 }
 
 /* Estilo para o seletor de cores */
@@ -380,7 +299,7 @@ td:hover {
 }
 
 /* Estilo para a opção de cor selecionada */
-.color-option.selected {
+.color-option.selected { 
     border-color: #333;
 }
 
@@ -400,7 +319,7 @@ td:hover {
     visibility: visible;
 }
 
-/* Estilização básica do modal */
+/* Estilização básica do modal Exibir todas as tarefas */
 #tasksModal {
     display: none;
     position: fixed;
@@ -411,17 +330,6 @@ td:hover {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
-}
-
-#tasksModal .modal-content {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 8px;
-    position: relative;
 }
 
 .close-tasks-modal {
@@ -441,16 +349,7 @@ td:hover {
     cursor: pointer;
 }
 
-.modal-content {
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 8px;
-}
-
+/* Botão de fechar os models */
 .close {
     color: #aaa;
     float: right;
@@ -521,30 +420,26 @@ td:hover {
 
 /* Estilo para Modal editar tarefa */
 .modal-content h2 {
-    font-size: 18px;
+    font-size: 1rem;
 }
 
 /* Estilos para o formulário de edição de eventos */
 .modal-content {
-    max-width: 500px;
-    margin: 0 auto;
+    background-color: #fff;
+    color: #000;
+    margin: 15% auto;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #888;
+    max-width: 500px;
     border-radius: 5px;
-}
-
-/* Estilos para os rótulos do formulário */
-.modal-content label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* Estilos para os campos de entrada de texto */
 .modal-content input[type="text"],
-.modal-content input[type="date"],
+/* .modal-content input[type="date"], */
 .modal-content textarea {
-    max-width: 95%;
+    max-width: 97%;
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
@@ -552,7 +447,41 @@ td:hover {
     border-radius: 3px;
 }
 
-/* Estilos para o botão de envio */
+.date-time-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.date-time-group label {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.date-time-group input {
+    flex: 1;
+}
+
+/* Estilização do Modal de Editar a tarefa */
+
+.event-modal-content {
+    background-color: #fff;
+    color: #000;
+
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.event-modal-content h2 {
+    font-size: 1rem;
+}
+
+/* Estilos para o botão de adicionar tarefa */
 #editEventForm button[type="submit"] {
     background-color: #007bff;
     color: #fff;
@@ -568,18 +497,14 @@ td:hover {
     background-color: #0056b3;
 }
 
-.btn_add:hover {
-    background-color: #0056b3;
-}
-
 #btn_close {
     background-color: #c9c8c8;
     color: #000;
-    padding: 10px 10px;
+    padding: 5px 5px;
     border: none;
     border-radius: 3px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 0.8rem;
 }
 
 #btn_close:hover {
@@ -587,13 +512,14 @@ td:hover {
 }
 
 .color-box {
-    width: 20px; /* Ajuste conforme necessário */
-    height: 20px; /* Ajuste conforme necessário */
-    border-radius: 50%; /* Para criar um círculo */
-    margin-left: 10px; /* Ajuste conforme necessário */
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-left: 10px;
 }
 
 /* Estilo para Modal editar tarefa */
+
 #editModal {
     display: none;
     position: fixed;
@@ -606,6 +532,23 @@ td:hover {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
+#editModal label {
+    font-size: 0.8rem;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.editModal h2 {
+    font-size: 1rem;
+}
+
+#editModal .close:hover,
+#editModal .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 #editModal .titulo {
     font-size: 1rem;
 }
@@ -616,16 +559,7 @@ td:hover {
     margin-bottom: 5px;
 }
 
-#editModal .modal-content {
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 600px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
+/* Botão fechar */
 #editModal .close {
     color: #aaa;
     float: right;
@@ -638,4 +572,64 @@ td:hover {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+#editEventForm button[type="submit"] {
+    font-size: 0.8rem;
+    background-color: rgb(61, 132, 192);
+    color: #fff;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Estilos para o botão de envio quando hover */
+#editEventForm button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para o formulário de adicionar evento */
+.edit-event-form {
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+/* Estilos para as etiquetas */
+.edit-event-form label {
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+/* Estilos para os campos de entrada de texto */
+.edit-event-form input[type="text"],
+.edit-event-form textarea {
+    width: 98%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-left: 10px;
+}
+
+.edit-event-form input[type="date"],
+.edit-event-form input[type="time"] {
+    max-width: 95%;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.add-event-form input[type="date"],
+.add-event-form input[type="time"] {
+    max-width: 95%;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
 }
