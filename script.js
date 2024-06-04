@@ -428,4 +428,6 @@ document.addEventListener('DOMContentLoaded', function () {
             getDaysCalendar(mes, ano);
         });
     }
+
+    
 });
