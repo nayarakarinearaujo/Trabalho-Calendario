@@ -115,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         openModal(day, mes + 1, ano);
                     });
 
+
                     day++;
                 }
             }
@@ -344,23 +345,25 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+
     // Função para abrir o modal de adição de tarefas
     function openModal(day, month, year) {
         const modal = document.getElementById('eventModal');
         if (!modal) return;
 
         modal.style.display = 'block';
-        const now = new Date();
-        const currentDateTime = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
-        document.getElementById('currentDateTime').textContent = currentDateTime;
 
         const currentDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        const now = new Date();
         const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
 
-        document.getElementById('taskDay').value = currentDate;
+        // Atualiza os campos do formulário com a data e hora corretas
+        document.getElementById('taskDay').value = currentDate; // Atualiza o valor da data de início aqui
         document.getElementById('eventDate').value = currentDate;
         document.getElementById('startTime').value = currentTime;
     }
+
+
 
     // Evento de envio do formulário de adição de tarefas
     const addEventForm = document.getElementById('addEventForm');
@@ -429,5 +432,5 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    
+
 });
