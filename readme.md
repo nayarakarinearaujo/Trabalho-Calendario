@@ -1,5 +1,5 @@
-# Calendário
-![Ícone de Agenda](icon-agenda.png)
+# Calendário ![Ícone de Agenda](icon-agenda.png)
+
 
 ## Índice
 1. [Visão Geral](#visão-geral)
@@ -11,7 +11,6 @@
 
 ## Visão Geral
 Este é um projeto de calendário que permite visualizar, adicionar, editar e excluir eventos. Ele exibe os dias do mês atual em uma tabela, com a capacidade de navegar para meses anteriores, próximos e retornar ao mês atual. Também é possível visualizar todas as tarefas agendadas em um modal de agenda.
-
 
 ## Funcionalidades
 -**Visualização de Calendário:** O calendário exibe os dias do mês atual em uma tabela, destacando o dia atual.
@@ -36,8 +35,6 @@ Esse site foi cuidadosamente projetado e organizado para proporcionar uma experi
 - `readme.md`: O arquivo Markdown que fornece informações sobre o projeto.
 -`icon-agenda.png`: Uma imagem representando o ícone da agenda.
 
-![Imagem do Projeto](calendario.png)
-
 ## Tecnologias Utilizadas
 - **HTML5**: Estrutura do site.
 - **CSS3**: Estilos e layout do site.
@@ -61,6 +58,7 @@ Esse site foi cuidadosamente projetado e organizado para proporcionar uma experi
 
 6-Você pode adicionar novas cores de eventos editando o arquivo style.css e adicionando novas classes de cores.
 
+![Imagem do Projeto](calendario.png)
 
 ## Autor
 Desenvolvido por Nayara Karine.
