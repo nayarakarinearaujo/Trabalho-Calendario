@@ -1,15 +1,20 @@
-
-
 /* Estilos gerais */
 body {
-    font-family: Arial, sans-serif;    
+    font-family: Arial, sans-serif;
 }
 
+
 .container {
-    width: 80%;
+    max-width: 600px;
+    /* Defina a largura máxima desejada para o container principal */
     margin: 0 auto;
-    text-align: center;
+    /* Centraliza o container na página */
+    padding: 20px;
+    /* Adiciona algum espaço interno para estética */
+    box-sizing: border-box;
+    /* Garante que a largura máxima inclua a largura do padding */
 }
+
 
 /* Estilos do conteúdo */
 .conteudo {
@@ -18,29 +23,48 @@ body {
     position: fixed;
     width: 80%;
     background: #ffffff;
-    padding: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     left: 50%;
     transform: translateX(-50%);
+    max-width: 600px;
+    /* Defina a largura máxima desejada para o container principal */
+    margin: 0 auto;
+    /* Centraliza o container na página */
+    padding: 20px;
+    box-sizing: border-box;
+    /* Garante que a largura máxima inclua a largura do padding */
 }
 
 /* Estilos do calendário */
+
 .calendario {
-    text-align: center;
-    width: 100%;
+    max-width: 600px;
+    /* Defina a largura máxima desejada */
+    margin: 0 auto;
+    /* Centraliza o calendário na página */
     margin: 0 auto;
 }
 
 .calendario table {
     width: 100%;
     table-layout: fixed;
+    border-collapse: collapse;
 }
+
+/* .calendario table {
+    width: 100%;
+    table-layout: fixed;
+    margin-top: 10px;
+    padding: 20px;
+} */
 
 .calendario th,
 .calendario td {
     width: calc(100% / 7);
-    padding: 10px;
     text-align: center;
+    border: 1px solid #ddd;
+    padding: 8px;
+    box-sizing: border-box;
 }
 
 .conteudo .calendario header {
@@ -49,8 +73,8 @@ body {
 
 .img-agd {
     position: absolute;
-    top: 10px;
-    left: 20px;
+    top: 30px;
+    left: 30px;
     margin-right: 10px;
 }
 
@@ -68,9 +92,9 @@ header {
 }
 
 .subtitulo h2 {
-    margin-right: 10px; 
+    margin-right: 10px;
     margin-top: 20px;
-    font-size: 28px;
+    font-size: 1.5rem;
     text-transform: uppercase;
 }
 
@@ -83,19 +107,23 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0;
 }
 
 .botoes {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: -20px;
+
 }
 
-.btn-esq, .btn-dir {
+.btn-esq,
+.btn-dir {
     display: flex;
 }
 
-.btn-esq button, .btn-dir button {
+.btn-esq button,
+.btn-dir button {
     padding: 5px 10px;
     margin-right: 10px;
     border: none;
@@ -106,15 +134,20 @@ header {
     margin-bottom: 10px;
 }
 
-.btn-esq button:hover, .btn-dir button:hover {
+.btn-esq button:hover,
+.btn-dir button:hover {
     background-color: #2980b9;
 }
 
-.btn_hoje, .btn_mes, .btn_agd {
+.btn_hoje,
+.btn_mes,
+.btn_agd {
     background-color: #2ecc71;
 }
 
-.btn_hoje:hover, .btn_mes:hover, .btn_agd:hover {
+.btn_hoje:hover,
+.btn_mes:hover,
+.btn_agd:hover {
     background-color: #27ae60;
 }
 
@@ -157,12 +190,12 @@ td:hover {
 
 #eventModal h2 {
     font-size: 1rem;
-} 
+}
 
 #eventModal label {
     font-size: 0.8rem;
-    color: black; 
-    margin-bottom: 5px; 
+    color: black;
+    margin-bottom: 5px;
 }
 
 #eventModal .close {
@@ -290,7 +323,7 @@ td:hover {
 }
 
 /* Estilo para a opção de cor selecionada */
-.color-option.selected { 
+.color-option.selected {
     border-color: #333;
 }
 
@@ -314,15 +347,17 @@ td:hover {
 .task {
     color: white;
     border-radius: 4px;
-    width: 110%; /* Largura total do elemento pai */
-    min-height: 10px; /* Altura mínima, mas pode crescer conforme necessário */
+    width: 110%;
+    /* Largura total do elemento pai */
+    min-height: 10px;
+    /* Altura mínima, mas pode crescer conforme necessário */
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
 
 }
 
-    /* 
+/* 
     padding: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -331,67 +366,67 @@ td:hover {
 
 /* Estilo básico do modal de tarefas */
 #tasksModal {
-    display: none; 
-    position: fixed; 
-    z-index: 1000; 
+    display: none;
+    position: fixed;
+    z-index: 1000;
     left: 0;
     top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0, 0, 0, 0.5); 
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* Estilo do conteúdo do modal */
 #tasksModal .modal-content {
-    position: relative; 
-    background-color: #fff; 
-    color: #000; 
+    position: relative;
+    background-color: #fff;
+    color: #000;
     margin: 10% auto;
     padding: 20px;
-    border: 1px solid #888; 
-    width: 80%; 
-    max-width: 600px; 
-    border-radius: 5px; 
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* Estilo do título do modal */
 #tasksModal h2 {
-    font-size: 1.5rem; 
+    font-size: 1.5rem;
     margin-bottom: 20px;
 }
 
 /* Estilo do botão de fechar */
 #tasksModal .close-tasks-modal {
-    color: #aaa; 
-    float: right; 
-    font-size: 28px; 
+    color: #aaa;
+    float: right;
+    font-size: 28px;
     font-weight: bold;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 #tasksModal .close-tasks-modal:hover,
 #tasksModal .close-tasks-modal:focus {
-    color: black; 
+    color: black;
     text-decoration: none;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 /* Estilo da lista de tarefas */
 #tasksModal #tasksList {
     max-height: 400px;
-    overflow-y: auto; 
+    overflow-y: auto;
     margin-top: 20px;
 }
 
 /* Estilo de cada tarefa na lista */
 #tasksModal .task-item {
-    padding: 10px; 
-    margin-bottom: 10px; 
+    padding: 10px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px; 
-    background-color: #f9f9f9; 
+    border-radius: 4px;
+    background-color: #f9f9f9;
 }
 
 /* Estilo do título da tarefa */
@@ -402,33 +437,33 @@ td:hover {
 
 /* Estilo da descrição da tarefa */
 #tasksModal .task-item p {
-    margin: 5px 0 0; 
-    font-size: 0.5rem; 
-    color: #666; 
+    margin: 5px 0 0;
+    font-size: 0.5rem;
+    color: #666;
 }
 
 /* Estilo da classe no JS */
 /* Estilo para cada tarefa na lista de tarefas */
 .agenda-task {
-    display: flex; 
+    display: flex;
     align-items: center;
-    padding: 10px; 
-    margin-bottom: 10px; 
-    border: 1px solid #ccc; 
-    border-radius: 2px; 
-    background-color: #f9f9f9; 
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    background-color: #f9f9f9;
 }
 
 /* Estilo para o título da tarefa */
 .agenda-task h3 {
-    margin: 0; 
+    margin: 0;
     font-size: 0.9rem;
 }
 
 /* Estilo para as informações da tarefa */
 .agenda-task p {
-    margin: 0 10px; 
-    font-size: 0.8rem; 
+    margin: 0 10px;
+    font-size: 0.8rem;
     color: #666;
 }
 
@@ -442,13 +477,13 @@ td:hover {
 
 /* Estilo para o botão de fechar do modal de exibição de tarefas */
 .close-tasks-modal {
-    position: absolute; 
-    top: 10px; 
-    right: 10px; 
-    color: #aaa; 
-    font-size: 28px; 
-    font-weight: bold; 
-    cursor: pointer; 
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .close-tasks-modal:hover,
@@ -702,4 +737,3 @@ td:hover {
     border: 1px solid #ccc;
     border-radius: 3px;
 }
-

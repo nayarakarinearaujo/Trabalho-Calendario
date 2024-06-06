@@ -13,14 +13,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Objeto contendo os feriados nacionais
     const feriadosNacionais = {
-        '1-1': 'Confraternização Universal',
-        '4-21': 'Tiradentes',
-        '5-1': 'Dia do Trabalho',
-        '9-7': 'Independência do Brasil',
-        '10-12': 'Nossa Senhora Aparecida',
-        '11-2': 'Finados',
-        '11-15': 'Proclamação da República',
-        '12-25': 'Natal'
+        '1-1': ' Confraternização Universal',
+        '4-21': ' Tiradentes',
+        '5-1': ' Dia do Trabalho',
+        '9-7': ' Independência do Brasil',
+        '10-12': ' Nossa Senhora Aparecida',
+        '11-2': ' Finados',
+        '11-15': ' Proclamação da República',
+        '12-25': ' Natal'
     };
 
     // Array para armazenar as tarefas do calendário
@@ -111,10 +111,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
 
                     // Adiciona evento de clique duplo para abrir o modal de adição de tarefas
+                    //Adiciona a data correspondente a data clicada, e a hora do sistema
                     cell.addEventListener('dblclick', function () {
-                        openModal(day, mes + 1, ano);
+                        openModal(cell.dataset.day, cell.dataset.month, cell.dataset.year);
                     });
-
 
                     day++;
                 }
@@ -356,12 +356,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const currentDate = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
         const now = new Date();
         const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-
-        // Atualiza os campos do formulário com a data e hora corretas
+        const nextHour = now.getHours() + 1;
+        const nextTime = `${String(nextHour).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`; // Hora atual + 1 hora
+    
         document.getElementById('taskDay').value = currentDate; // Atualiza o valor da data de início aqui
         document.getElementById('eventDate').value = currentDate;
         document.getElementById('startTime').value = currentTime;
+        document.getElementById('eventEndDate').value = currentDate; //Define o mesmo valor para data fim
+        document.getElementById('endTime').value = nextTime; // Define a hora final como uma hora a mais do que a hora atual
+
     }
+
 
 
 
@@ -434,3 +439,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 });
+
