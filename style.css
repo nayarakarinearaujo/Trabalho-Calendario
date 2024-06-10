@@ -347,14 +347,11 @@ td:hover {
 .task {
     color: white;
     border-radius: 4px;
-    width: 110%;
-    /* Largura total do elemento pai */
     min-height: 10px;
-    /* Altura mínima, mas pode crescer conforme necessário */
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-
+    text-overflow: ellipsis; /* Adiciona reticências ao texto que não cabe */
+    white-space: nowrap; /* Impede a quebra de linha */
+    overflow: hidden; /* Esconde o excesso de texto */
+    max-width: 100%; /* Define um limite de largura */
 }
 
 /* 
@@ -389,6 +386,10 @@ td:hover {
     max-width: 600px;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-height: 80%; /* Adiciona uma altura máxima */
+    overflow-y: auto; /* Adiciona rolagem vertical se o conteúdo ultrapassar a altura máxima */
+    box-sizing: border-box; /* Garante que o padding está incluído no tamanho total */
+
 }
 
 /* Estilo do título do modal */
@@ -427,19 +428,29 @@ td:hover {
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #f9f9f9;
+    overflow: hidden; /* Garante que o texto longo não estoure */
+    text-overflow: ellipsis; /* Adiciona reticências ao texto longo */
 }
 
 /* Estilo do título da tarefa */
 #tasksModal .task-item h2 {
     margin: 0;
     font-size: 1rem;
+    white-space: nowrap; /* Evita quebra de linha */
+    overflow: hidden; /* Esconde o excesso de texto */
+    text-overflow: ellipsis; /* Adiciona reticências ao texto longo */
+    max-width: 100%; /* Ajusta conforme necessário */
 }
 
 /* Estilo da descrição da tarefa */
 #tasksModal .task-item p {
     margin: 5px 0 0;
-    font-size: 0.5rem;
+    font-size: 0.8rem;
     color: #666;
+    white-space: nowrap; /* Impede a quebra de linha */
+    overflow: hidden; /* Esconde o excesso de texto */
+    text-overflow: ellipsis; /* Adiciona reticências ao texto longo */
+    max-width: 100%;
 }
 
 /* Estilo da classe no JS */
@@ -452,6 +463,8 @@ td:hover {
     border: 1px solid #ccc;
     border-radius: 2px;
     background-color: #f9f9f9;
+    overflow: hidden; /* Garante que o texto longo não estoure */
+    text-overflow: ellipsis; /* Adiciona reticências ao texto longo */
 }
 
 /* Estilo para o título da tarefa */

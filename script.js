@@ -101,6 +101,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         taskElement.classList.add('task');
                         taskElement.textContent = task.eventTitle;
                         taskElement.style.backgroundColor = task.eventColor;
+                        taskElement.style.maxWidth = '150px'; // Defina uma largura fixa ou ajuste conforme necessário
+
 
                         cell.appendChild(taskElement);
 
