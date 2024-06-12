@@ -744,6 +744,7 @@ td:hover {
 
 /* Estilos para os campos de entrada de texto */
 .edit-event-form input[type="text"],
+.edit-event-form input[type="url"],
 .edit-event-form textarea {
     width: 98%;
     padding: 8px;
@@ -764,12 +765,47 @@ td:hover {
     border-radius: 3px;
 }
 
+.add-event-form input[type="text"],
+.add-event-form textarea,
+.add-event-form input[type="url"],
 .add-event-form input[type="date"],
-.add-event-form input[type="time"] {
+.add-event-form input[type="time"]  {
     max-width: 95%;
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
+}
+
+.location-url-field {
+    width: 98%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-left: 10px;
+}
+
+.tasks-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.task {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.task h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.task p {
+    margin: 5px 0;
 }

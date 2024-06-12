@@ -89,6 +89,15 @@
                         <label for="endTime">Hora de Fim:</label>
                         <input type="time" id="endTime" name="endTime">
                     </div>
+
+                    <!-- Novo campo para URL -->
+                    <label for="eventUrlEdit">URL do Evento:</label>
+                    <input type="url" id="eventUrlEdit" name="eventUrlEdit">
+
+                    <!-- Novo campo para Localização -->
+                    <label for="eventLocationEdit">Localização:</label>
+                    <input type="text" id="eventLocationEdit" name="eventLocationEdit">
+
                     <label for="eventDescription">Descrição:</label><br>
                     <textarea id="eventDescription" name="eventDescription"></textarea><br>
                     <input type="hidden" id="selectedColor" name="selectedColor">
@@ -141,6 +150,7 @@
 
                 <label for="eventTitleEdit">Título:</label>
                 <input type="text" id="eventTitleEdit" name="eventTitleEdit" required>
+
                 <div class="date-time-group">
                     <label for="eventDateEdit">Data de Início:</label>
                     <input type="date" id="eventDateEdit" name="eventDateEdit" required>
@@ -155,6 +165,14 @@
                     <label for="endTimeEdit">Hora de Término:</label>
                     <input type="time" id="endTimeEdit" name="endTimeEdit" required>
                 </div>
+
+                <!-- Novo campo para URL -->
+                <label for="eventUrlEdit">URL do Evento:</label>
+                <input type="url" id="eventUrlEdit" name="eventUrlEdit">
+
+                <!-- Novo campo para Localização -->
+                <label for="eventLocationEdit">Localização:</label>
+                <input type="text" id="eventLocationEdit" name="eventLocationEdit">
 
                 <label for="eventDescriptionEdit">Descrição:</label>
                 <textarea id="eventDescriptionEdit" name="eventDescriptionEdit"></textarea>
@@ -198,9 +216,15 @@
         </div>
     </div>
 
-
+    <div id="tasksContainer" class="tasks-container" style="display: none;">
+        <h2>Todas as Tarefas</h2>
+        <div id="tasksList">
+            <!-- A lista de tarefas será inserida aqui -->
+        </div>
+    </div>
+    
     <!-- Modal para exibir todas as tarefas -->
-    <div id="tasksModal" class="modal">
+    <!-- <div id="tasksModal" class="modal">
         <div class="modal-content">
             <span class="close-tasks-modal">&times;</span>
             <h2>Todas as Tarefas</h2>
@@ -208,11 +232,10 @@
 
             </div>
         </div>
-    </div>
+    </div> -->
 
 
     <script src="script.js"></script>
 </body>
 
 </html>
-

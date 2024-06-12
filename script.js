@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
         const nextHour = now.getHours() + 1;
         const nextTime = `${String(nextHour).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`; // Hora atual + 1 hora
-    
+
         document.getElementById('taskDay').value = currentDate; // Atualiza o valor da data de início aqui
         document.getElementById('eventDate').value = currentDate;
         document.getElementById('startTime').value = currentTime;
@@ -407,7 +407,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 opt.querySelector('.color-checkmark').style.visibility = 'hidden';
             });
         });
+
+        // Adicione o código abaixo ao seu bloco de código JavaScript existente
+
+        const closeEditModalButton = document.getElementById('btn_close');
+        if (closeEditModalButton) {
+            closeEditModalButton.addEventListener('click', function () {
+                const editModal = document.getElementById('editModal');
+                if (editModal) {
+                    editModal.style.display = 'none';
+                }
+            });
+        }
+
     }
+
 
     // Evento de envio do formulário de edição de tarefas
     const editEventForm = document.getElementById('editEventForm');
@@ -442,3 +456,48 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+document.getElementById('btn_agd').addEventListener('click', function() {
+    const calendar = document.querySelector('.calendario');
+    const tasksContainer = document.getElementById('tasksContainer');
+
+    if (tasksContainer.style.display === 'none') {
+        tasksContainer.style.display = 'block';
+        calendar.style.display = 'none';
+        loadTasks(); // Função para carregar as tarefas salvas
+    } else {
+        tasksContainer.style.display = 'none';
+        calendar.style.display = 'block';
+    }
+});
+
+function loadTasks() {
+    // Simulação de tarefas salvas
+    const tasks = [
+        { title: 'Evento 1', date: '2024-04-01', description: 'Descrição do evento 1' },
+        { title: 'Evento 2', date: '2024-04-02', description: 'Descrição do evento 2' }
+        // Adicione mais tarefas conforme necessário
+    ];
+
+    const tasksList = document.getElementById('tasksList');
+    tasksList.innerHTML = ''; // Limpa a lista antes de adicionar novas tarefas
+
+    tasks.forEach(task => {
+        const taskElement = document.createElement('div');
+        taskElement.className = 'task';
+
+        const taskTitle = document.createElement('h3');
+        taskTitle.textContent = task.title;
+
+        const taskDate = document.createElement('p');
+        taskDate.textContent = `Data: ${task.date}`;
+
+        const taskDescription = document.createElement('p');
+        taskDescription.textContent = `Descrição: ${task.description}`;
+
+        taskElement.appendChild(taskTitle);
+        taskElement.appendChild(taskDate);
+        taskElement.appendChild(taskDescription);
+
+        tasksList.appendChild(taskElement);
+    });
+}
