@@ -3,90 +3,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-
-.container {
-    max-width: 600px;
-    /* Defina a largura máxima desejada para o container principal */
-    margin: 0 auto;
-    /* Centraliza o container na página */
-    padding: 20px;
-    /* Adiciona algum espaço interno para estética */
-    box-sizing: border-box;
-    /* Garante que a largura máxima inclua a largura do padding */
-}
-
-
-/* Estilos do conteúdo */
-.conteudo {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    width: 80%;
-    background: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 600px;
-    /* Defina a largura máxima desejada para o container principal */
-    margin: 0 auto;
-    /* Centraliza o container na página */
-    padding: 20px;
-    box-sizing: border-box;
-    /* Garante que a largura máxima inclua a largura do padding */
-}
-
-/* Estilos do calendário */
-
-.calendario {
-    max-width: 600px;
-    /* Defina a largura máxima desejada */
-    margin: 0 auto;
-    /* Centraliza o calendário na página */
-    margin: 0 auto;
-}
-
-.calendario table {
-    width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
-}
-
-/* .calendario table {
-    width: 100%;
-    table-layout: fixed;
-    margin-top: 10px;
-    padding: 20px;
-} */
-
-.calendario th,
-.calendario td {
-    width: calc(100% / 7);
-    text-align: center;
-    border: 1px solid #ddd;
-    padding: 8px;
-    box-sizing: border-box;
-}
-
-.conteudo .calendario header {
-    position: relative;
-}
-
-.img-agd {
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    margin-right: 10px;
-}
-
-.titulo-agenda {
-    position: absolute;
-    top: 18px;
-    left: 60px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #929292;
-}
-
 header {
     padding: 0px;
 }
@@ -139,17 +55,72 @@ header {
     background-color: #2980b9;
 }
 
-.btn_hoje,
-.btn_mes,
-.btn_agd {
-    background-color: #2ecc71;
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.btn_hoje:hover,
-.btn_mes:hover,
-.btn_agd:hover {
-    background-color: #27ae60;
+/* Estilos do conteúdo */
+.conteudo {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 80%;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
 }
+
+/* Estilos do calendário */
+.calendario {
+    max-width: 600px;
+    margin: 0 auto;
+    margin: 0 auto;
+}
+
+.calendario table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.calendario th,
+.calendario td {
+    width: calc(100% / 7);
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.conteudo .calendario header {
+    position: relative;
+}
+
+.img-agd {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    margin-right: 10px;
+}
+
+.titulo-agenda {
+    position: absolute;
+    top: 18px;
+    left: 60px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #929292;
+}
+
 
 /* Estilo das tabelas */
 table {
@@ -354,31 +325,21 @@ td:hover {
 .task {
     color: white;
     border-radius: 4px;
-    min-height: 10px;
-    text-overflow: ellipsis; /* Adiciona reticências ao texto que não cabe */
-    white-space: nowrap; /* Impede a quebra de linha */
-    overflow: hidden; /* Esconde o excesso de texto */
-    max-width: 100%; /* Define um limite de largura */
-}
-
-/* 
-    padding: 5px;
-    overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;  */
-
+    overflow: hidden;
+}
 
 /* Estilo básico do modal de tarefas */
 #tasksModal {
-    display: none; /* Oculto por padrão */
-    position: fixed; /* Fixa o modal na tela */
-    z-index: 1; /* Garante que o modal esteja acima de outros elementos */
+    display: none;
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Largura total da tela */
-    height: 100%; /* Altura total da tela */
-    overflow: auto; /* Permite rolagem se o conteúdo for maior que a tela */
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 #tasksModalContent {
@@ -386,8 +347,8 @@ td:hover {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 100%; /* Largura do conteúdo do modal */
-    max-width: 600px; /* Largura máxima do conteúdo do modal */
+    width: 100%;
+    max-width: 600px;
 }
 
 
@@ -403,10 +364,9 @@ td:hover {
     max-width: 600px;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-height: 80%; /* Adiciona uma altura máxima */
-    overflow-y: auto; /* Adiciona rolagem vertical se o conteúdo ultrapassar a altura máxima */
-    box-sizing: border-box; /* Garante que o padding está incluído no tamanho total */
-
+    max-height: 80%;
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
 /* Estilo do título do modal */
@@ -432,10 +392,17 @@ td:hover {
 }
 
 /* Estilo da lista de tarefas */
-#tasksModal #tasksList {
+#tasksModal{
     max-height: 400px;
     overflow-y: auto;
     margin-top: 20px;
+}
+
+#tasksList {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-top: 20px;
+    top: 50px;
 }
 
 /* Estilo de cada tarefa na lista */
@@ -445,18 +412,18 @@ td:hover {
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #f9f9f9;
-    overflow: hidden; /* Garante que o texto longo não estoure */
-    text-overflow: ellipsis; /* Adiciona reticências ao texto longo */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Estilo do título da tarefa */
 #tasksModal .task-item h2 {
     margin: 0;
     font-size: 1rem;
-    white-space: nowrap; /* Evita quebra de linha */
-    overflow: hidden; /* Esconde o excesso de texto */
-    text-overflow: ellipsis; /* Adiciona reticências ao texto longo */
-    max-width: 100%; /* Ajusta conforme necessário */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 /* Estilo da descrição da tarefa */
@@ -464,9 +431,9 @@ td:hover {
     margin: 5px 0 0;
     font-size: 0.6rem;
     color: #666;
-    white-space: nowrap; /* Impede a quebra de linha */
-    overflow: hidden; /* Esconde o excesso de texto */
-    text-overflow: ellipsis; /* Adiciona reticências ao texto longo */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     max-width: 100%;
 }
 
@@ -480,18 +447,18 @@ td:hover {
     border: 1px solid #ccc;
     border-radius: 2px;
     background-color: #f9f9f9;
-    overflow: hidden; /* Garante que o texto longo não estoure */
-    text-overflow: ellipsis; /* Adiciona reticências ao texto longo */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Estilo para o título da tarefa */
 .agenda-task h3 {
-    white-space: nowrap; /* Evita quebra de linha */
-    overflow: hidden; /* Esconde o texto que ultrapassa o limite */
-    text-overflow: ellipsis; /* Adiciona reticências ao final do texto truncado */
-    max-width: 100%; /* Define a largura máxima como 100% do contêiner pai */
-    display: inline-block; /* Necessário para que text-overflow funcione */
-    vertical-align: middle; /* Alinha verticalmente ao meio */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: middle;
     font-size: 1rem;
 }
 
@@ -507,7 +474,6 @@ td:hover {
 .agenda-task .color-box {
     width: 20px;
     height: 20px;
-    /* border-radius: 50%; */
     margin-left: auto;
 }
 
@@ -577,7 +543,6 @@ td:hover {
 
 /* Estilos para os campos de entrada de texto */
 .modal-content input[type="text"],
-/* .modal-content input[type="date"], */
 .modal-content textarea {
     max-width: 97%;
     width: 100%;
@@ -743,6 +708,7 @@ td:hover {
 }
 
 /* Estilos para os campos de entrada de texto */
+
 .edit-event-form input[type="text"],
 .edit-event-form input[type="url"],
 .edit-event-form textarea {
@@ -769,7 +735,7 @@ td:hover {
 .add-event-form textarea,
 .add-event-form input[type="url"],
 .add-event-form input[type="date"],
-.add-event-form input[type="time"]  {
+.add-event-form input[type="time"] {
     max-width: 95%;
     width: 100%;
     padding: 8px;
@@ -788,6 +754,8 @@ td:hover {
     margin-left: 10px;
 }
 
+/* Seção todas as tarefas */
+
 .tasks-container {
     padding: 20px;
     background-color: #f9f9f9;
@@ -796,16 +764,74 @@ td:hover {
     margin-top: 20px;
 }
 
-.task {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
-}
-
-.task h3 {
-    margin: 0;
-    font-size: 1.2em;
-}
-
 .task p {
     margin: 5px 0;
+}
+
+#tasksContainer {
+    background: #ffffff;
+    top: 90px;
+    border: none;
+    max-width: 600px;
+    height: 530px;
+    overflow-y: auto;
+}
+
+.btn_mes {
+    padding: 5px 10px;
+    margin-right: 10px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    display: flex;
+    position: fixed;
+    top: 70px;
+    right: 20px;
+}
+
+.btn_mes:hover {
+    background-color: #2980b9;
+}
+
+.tasks-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tasks-table th,
+.tasks-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+    font-size: 0.8rem;
+}
+
+.tasks-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.tasks-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+    font-size: 0.8rem;
+}
+
+.tasks-table tr:hover {
+    background-color: #ddd;
+}
+
+.tasks-table .task-item {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
 }
