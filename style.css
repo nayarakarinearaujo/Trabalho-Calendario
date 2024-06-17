@@ -7,6 +7,56 @@ header {
     padding: 0px;
 }
 
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Estilos do conteúdo */
+.conteudo {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 80%;
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.subtitulo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.conteudo .calendario header {
+    position: relative;
+}
+
+.img-agd {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    margin-right: 10px;
+}
+
+.titulo-agenda {
+    position: absolute;
+    top: 18px;
+    left: 60px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #929292;
+}
+
 .subtitulo h2 {
     margin-right: 10px;
     margin-top: 20px;
@@ -19,18 +69,11 @@ header {
     justify-content: space-between;
 }
 
-.subtitulo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-}
 
 .botoes {
     display: flex;
     justify-content: space-between;
     margin-top: -20px;
-
 }
 
 .btn-esq,
@@ -56,29 +99,6 @@ header {
 }
 
 
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-/* Estilos do conteúdo */
-.conteudo {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    width: 80%;
-    background: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
 /* Estilos do calendário */
 .calendario {
     max-width: 600px;
@@ -99,26 +119,6 @@ header {
     border: 1px solid #ddd;
     padding: 8px;
     box-sizing: border-box;
-}
-
-.conteudo .calendario header {
-    position: relative;
-}
-
-.img-agd {
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    margin-right: 10px;
-}
-
-.titulo-agenda {
-    position: absolute;
-    top: 18px;
-    left: 60px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #929292;
 }
 
 
@@ -146,42 +146,7 @@ td:hover {
     cursor: pointer;
 }
 
-/* Estilo do modal de adicionar tarefas */
-#eventModal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 90%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-}
 
-#eventModal h2 {
-    font-size: 1rem;
-}
-
-#eventModal label {
-    font-size: 0.8rem;
-    color: black;
-    margin-bottom: 5px;
-}
-
-#eventModal .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-#eventModal .close:hover,
-#eventModal .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
 
 /* Estilos para o botão de adicionar tarefa */
 #eventModal button[type="submit"] {
@@ -240,6 +205,7 @@ td:hover {
     font-size: 12px;
 }
 
+
 /* Estilo dos dias de feriado */
 .holiday {
     background-color: #ffdfcc;
@@ -267,6 +233,126 @@ td:hover {
 
 .date-time-group input {
     flex: 1;
+}
+
+
+/* Estilos do modal todas as tarefas */
+.tasks-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.task p {
+    margin: 5px 0;
+}
+
+#tasksContainer {
+    background: #ffffff;
+    top: 90px;
+    border: none;
+    max-width: 600px;
+    height: 530px;
+    overflow-y: auto;
+}
+
+.btn_mes {
+    padding: 5px 10px;
+    margin-right: 10px;
+    border: none;
+    background-color: #3498db;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    display: flex;
+    position: fixed;
+    top: 70px;
+    right: 20px;
+}
+
+.btn_mes:hover {
+    background-color: #2980b9;
+}
+
+.tasks-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tasks-table th,
+.tasks-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+    font-size: 0.8rem;
+}
+
+.tasks-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.tasks-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+    font-size: 0.8rem;
+}
+
+.tasks-table tr:hover {
+    background-color: #ddd;
+}
+
+.tasks-table .task-item {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* Estilo do modal de adicionar tarefas */
+#eventModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 90%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#eventModal h2 {
+    font-size: 1rem;
+}
+
+#eventModal label {
+    font-size: 0.8rem;
+    color: black;
+    margin-bottom: 5px;
+}
+
+#eventModal .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#eventModal .close:hover,
+#eventModal .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 /* Estilo para o seletor de cores */
@@ -437,6 +523,7 @@ td:hover {
     max-width: 100%;
 }
 
+/* ------------------------------------------------------------------- */
 /* Estilo da classe no JS */
 /* Estilo para cada tarefa na lista de tarefas */
 .agenda-task {
@@ -754,84 +841,4 @@ td:hover {
     margin-left: 10px;
 }
 
-/* Seção todas as tarefas */
 
-.tasks-container {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 20px;
-}
-
-.task p {
-    margin: 5px 0;
-}
-
-#tasksContainer {
-    background: #ffffff;
-    top: 90px;
-    border: none;
-    max-width: 600px;
-    height: 530px;
-    overflow-y: auto;
-}
-
-.btn_mes {
-    padding: 5px 10px;
-    margin-right: 10px;
-    border: none;
-    background-color: #3498db;
-    color: white;
-    font-size: 12px;
-    cursor: pointer;
-    margin-bottom: 10px;
-    display: flex;
-    position: fixed;
-    top: 70px;
-    right: 20px;
-}
-
-.btn_mes:hover {
-    background-color: #2980b9;
-}
-
-.tasks-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.tasks-table th,
-.tasks-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 250px;
-    font-size: 0.8rem;
-}
-
-.tasks-table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-    font-size: 0.8rem;
-}
-
-.tasks-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-    font-size: 0.8rem;
-}
-
-.tasks-table tr:hover {
-    background-color: #ddd;
-}
-
-.tasks-table .task-item {
-    cursor: pointer;
-}
-
-.hidden {
-    display: none;
-}

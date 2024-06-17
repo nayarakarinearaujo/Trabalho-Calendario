@@ -225,6 +225,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+
     function openEditModal(task) {
         const editModal = document.getElementById('editModal');
         if (!editModal) return;
@@ -286,6 +287,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Atualiza a cor da tarefa no calendário após edição
         updateTaskColorInCalendar(task);
     }
+    
 
     function updateTaskColorInCalendar(task) {
         const calendarCells = document.querySelectorAll('#dias td');
@@ -330,7 +332,6 @@ document.addEventListener('DOMContentLoaded', function () {
             option.classList.add('selected');
         });
     });
-
 
 
     function saveTasksToLocalStorage() {
